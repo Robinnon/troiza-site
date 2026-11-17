@@ -2,123 +2,231 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Troiza — 3D Browser Games</title>
-<meta name="description" content="Troiza is a small team that makes 3D games for the browser on its own engine. Our games: I Cloned Myself and Egg Heist Tower.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Troiza — 3D Browser Games Studio</title>
+<meta name="description" content="Troiza is an independent studio that makes bright 3D games for the browser. Our games: I Cloned Myself and Egg Heist Tower, on CrazyGames and Playgama.">
 <link rel="canonical" href="https://troiza.cubyplay.com/">
-<meta property="og:title" content="Troiza — 3D Browser Games">
-<meta property="og:description" content="A small team that makes 3D games for the browser on its own engine.">
-<meta property="og:image" content="https://troiza.cubyplay.com/img/egg-heist-tower.jpg">
+<meta name="theme-color" content="#0b1230">
+<meta property="og:title" content="Troiza — 3D Browser Games Studio">
+<meta property="og:description" content="Bright 3D games that open in one tap on PC and phones.">
+<meta property="og:image" content="https://troiza.cubyplay.com/img/hero-wide.jpg">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23ff5a1f'/%3E%3Ctext x='16' y='23' font-family='Arial' font-weight='900' font-size='20' text-anchor='middle' fill='white'%3ET%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="img/icon-64.png" type="image/png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preload" href="fonts/lilita-one-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="img/hero-tall.webp" media="(max-aspect-ratio: 4/5)" fetchpriority="high">
+<link rel="preload" as="image" imagesrcset="img/hero-wide-1600.webp 1600w, img/hero-wide.webp 2560w" imagesizes="100vw" media="(min-aspect-ratio: 4/5)" fetchpriority="high">
 <style>
+@font-face { font-family: "Lilita One"; src: url(fonts/lilita-one-latin.woff2) format("woff2"); font-display: swap; }
+@font-face { font-family: "Nunito"; src: url(fonts/nunito-latin.woff2) format("woff2"); font-weight: 200 1000; font-display: swap; }
+
 :root {
-  --bg: #12131a;
-  --panel: #1c1e28;
-  --line: #2b2e3b;
-  --text: #f2f2f5;
-  --muted: #a3a6b5;
-  --accent: #ff5a1f;
-  --accent2: #ffc23d;
+  --night: #0b1230;
+  --deep: #121c46;
+  --card: #16224f;
+  --edge: #2a3a78;
+  --text: #f5f7ff;
+  --muted: #aab4dc;
+  --sun: #ffc83d;
+  --flame: #ff6a1f;
+  --outline: #3a1d07;
+  --display: "Lilita One", "Arial Rounded MT Bold", sans-serif;
 }
 * { box-sizing: border-box; margin: 0; }
+html { scroll-behavior: smooth; }
 body {
-  background: var(--bg);
+  background: var(--night);
   color: var(--text);
-  font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font: 17px/1.55 Nunito, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 a { color: inherit; }
-.wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
-header { padding: 22px 0; }
-.logo { display: inline-flex; align-items: center; gap: 10px; font-weight: 900; font-size: 22px; letter-spacing: .5px; text-decoration: none; }
-.logo i { width: 34px; height: 34px; border-radius: 9px; background: var(--accent); display: grid; place-items: center; font-style: normal; color: #fff; }
-.hero { padding-top: 56px; padding-bottom: 40px; }
-.hero h1 { font-size: clamp(34px, 6vw, 60px); line-height: 1.08; font-weight: 900; max-width: 15ch; }
-.hero h1 span { color: var(--accent); }
-.hero p { margin-top: 20px; max-width: 60ch; color: var(--muted); font-size: 19px; }
-section { padding: 40px 0; }
-h2 { font-size: 28px; font-weight: 800; margin-bottom: 20px; }
-.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
-.stat { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
-.stat b { display: block; font-size: 40px; line-height: 1.1; font-weight: 900; color: var(--accent2); }
-.stat span { display: block; margin-top: 6px; color: var(--muted); font-size: 15px; }
-.games { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-.game { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; text-decoration: none; transition: transform .15s, border-color .15s; }
-.game:hover { transform: translateY(-3px); border-color: var(--accent); }
-.game img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
-.game div { padding: 20px 22px 24px; display: flex; flex-direction: column; flex: 1; }
-.game h3 { font-size: 22px; font-weight: 800; }
-.game p { margin: 8px 0 18px; color: var(--muted); flex: 1; }
-.game em { font-style: normal; align-self: flex-start; background: var(--accent); color: #fff; font-weight: 700; padding: 10px 18px; border-radius: 10px; }
-.about { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
-.about div { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
-.about h3 { font-size: 18px; margin-bottom: 6px; }
-.about p { color: var(--muted); font-size: 16px; }
-footer { padding: 40px 0 50px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); margin-top: 30px; }
+.wrap { width: min(1120px, 100% - 40px); margin-inline: auto; }
+
+.brand { display: inline-block; }
+.brand img { display: block; width: auto; height: 52px; }
+
+.hero {
+  position: relative;
+  min-height: min(86svh, 820px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  isolation: isolate;
+}
+.hero picture, .hero picture img {
+  position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2;
+}
+.hero picture img { object-fit: cover; object-position: 50% 35%; animation: settle 2.4s cubic-bezier(.2,.7,.2,1) both; }
+.hero::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(11,18,48,.45) 0%, rgba(11,18,48,0) 18%),
+    linear-gradient(90deg, rgba(11,18,48,.62) 0%, rgba(11,18,48,.22) 38%, rgba(11,18,48,0) 55%),
+    linear-gradient(0deg, var(--night) 0%, rgba(11,18,48,0) 32%);
+}
+.hero header { padding: 26px 0; }
+.stage { flex: 1; display: flex; align-items: center; padding-bottom: 110px; }
+.copy { max-width: 34rem; }
+.kicker {
+  display: inline-block; font-weight: 800; font-size: 14px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--sun); background: rgba(11,18,48,.55); border: 1px solid rgba(255,200,61,.35);
+  padding: 6px 14px; border-radius: 999px; backdrop-filter: blur(6px);
+}
+h1 {
+  margin-top: 18px;
+  font-family: var(--display); font-weight: 400;
+  font-size: clamp(42px, 6.4vw, 78px); line-height: 1.02; letter-spacing: .5px;
+  text-shadow: 0 4px 0 rgba(11,18,48,.55), 0 10px 30px rgba(11,18,48,.6);
+}
+h1 em { font-style: normal; color: var(--sun); -webkit-text-stroke: 7px var(--outline); paint-order: stroke fill; }
+.lead { margin-top: 18px; font-size: 19px; color: #dfe5ff; max-width: 30rem; text-shadow: 0 2px 12px rgba(11,18,48,.8); }
+
+.games { position: relative; margin-top: -110px; padding-bottom: 64px; }
+.games h2 { font-family: var(--display); font-weight: 400; font-size: 34px; margin: 0 0 18px 4px; letter-spacing: .5px; }
+.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
+
+.game {
+  background: linear-gradient(180deg, var(--card), var(--deep));
+  border: 1px solid var(--edge);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px -20px rgba(0,0,0,.65);
+  display: flex; flex-direction: column;
+  animation: rise .9s cubic-bezier(.2,.7,.2,1) both;
+}
+.game + .game { animation-delay: .12s; }
+.shot { position: relative; display: block; aspect-ratio: 16 / 9; overflow: hidden; }
+.shot img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+.game:hover .shot img { transform: scale(1.04); }
+.shot span {
+  position: absolute; left: 18px; bottom: 16px;
+  font: 400 clamp(26px, 3vw, 34px)/1 var(--display); letter-spacing: .5px; color: var(--sun);
+  -webkit-text-stroke: 6px var(--outline); paint-order: stroke fill;
+  filter: drop-shadow(0 4px 0 rgba(0,0,0,.35));
+}
+.body { padding: 20px 24px 26px; display: flex; flex-direction: column; gap: 18px; flex: 1; }
+.pitch { color: #d3daf7; }
+.genre { display: block; margin-bottom: 4px; font-size: 13px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; color: var(--muted); }
+
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; list-style: none; padding: 0; }
+.stats li { background: rgba(11,18,48,.55); border: 1px solid var(--edge); border-radius: 16px; padding: 12px 12px 11px; }
+.stats b { display: block; font: 400 28px/1 var(--display); color: var(--sun); letter-spacing: .5px; }
+.stats b small { font-size: 18px; }
+.stats span { display: block; margin-top: 6px; font-size: 13px; line-height: 1.3; color: var(--muted); }
+
+.play { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; }
+.play a {
+  text-decoration: none; font-weight: 800; font-size: 15px;
+  padding: 11px 18px; border-radius: 14px; border: 1px solid var(--edge); background: rgba(255,255,255,.04);
+  transition: background .2s, border-color .2s, transform .2s;
+}
+.play a:first-child { background: var(--flame); border-color: var(--flame); box-shadow: 0 4px 0 #b8400a; }
+.play a:hover { transform: translateY(-2px); border-color: var(--sun); }
+
+footer { border-top: 1px solid var(--edge); padding: 26px 0 40px; color: var(--muted); font-size: 14px; }
+footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+footer .brand img { height: 34px; }
+
+.hero header, .kicker, h1, .lead { animation: rise .8s cubic-bezier(.2,.7,.2,1) both; }
+h1 { animation-delay: .08s; }
+.lead { animation-delay: .16s; }
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } }
+@keyframes settle { from { transform: scale(1.06); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+@media (max-width: 860px) {
+  .grid { grid-template-columns: 1fr; }
+}
+@media (max-aspect-ratio: 4/5) {
+  .hero { min-height: 92svh; }
+  .hero picture img { object-position: 72% 0; }
+  .hero::after {
+    background:
+      linear-gradient(180deg, rgba(11,18,48,.55) 0%, rgba(11,18,48,0) 18%),
+      linear-gradient(0deg, var(--night) 8%, rgba(11,18,48,.75) 36%, rgba(11,18,48,0) 62%);
+  }
+  .stage { align-items: flex-end; padding-bottom: 120px; }
+  .lead { font-size: 17px; }
+}
+@media (max-width: 520px) {
+  .brand img { height: 42px; }
+  .games { margin-top: -90px; }
+  .games h2 { font-size: 30px; }
+  .body { padding: 18px 18px 22px; }
+  .stats { gap: 8px; }
+  .stats li { padding: 10px 10px 9px; border-radius: 14px; }
+  .stats b { font-size: 24px; }
+  .stats span { font-size: 12px; }
+}
 </style>
 </head>
 <body>
-<header>
-  <div class="wrap"><a class="logo" href="/"><i>T</i>Troiza</a></div>
-</header>
-
-<main>
-  <div class="wrap hero">
-    <h1>We make <span>3D games</span> for the browser</h1>
-    <p>Troiza is a small team of game developers. We build 3D games that run right in the browser on a computer or a phone, with nothing to download. All our games run on our own 3D engine.</p>
+<section class="hero">
+  <picture>
+    <source media="(max-aspect-ratio: 4/5)" srcset="img/hero-tall.webp">
+    <img src="img/hero-wide-1600.webp" srcset="img/hero-wide-1600.webp 1600w, img/hero-wide.webp 2560w" sizes="100vw" alt="" fetchpriority="high">
+  </picture>
+  <header class="wrap"><a class="brand" href="/"><img src="img/logo.webp" alt="Troiza" width="468" height="160"></a></header>
+  <div class="wrap stage">
+    <div class="copy">
+      <span class="kicker">Independent game studio</span>
+      <h1>Bright <em>3D games</em> right in the browser</h1>
+      <p class="lead">We make tycoon adventures that open in one tap on a computer or a phone, all on our own 3D engine.</p>
+    </div>
   </div>
+</section>
 
-  <section>
-    <div class="wrap">
-      <h2>Troiza in numbers</h2>
-      <div class="stats">
-        <div class="stat"><b>2</b><span>games released: I Cloned Myself and Egg Heist Tower</span></div>
-        <div class="stat"><b>5</b><span>languages in every game: English, Spanish, Portuguese, Turkish and Russian</span></div>
-        <div class="stat"><b>1</b><span>3D engine of our own, shared by all our games</span></div>
-        <div class="stat"><b>0 MB</b><span>to download: our games open in the browser on PC, Android and iOS</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <h2>Our games</h2>
-      <div class="games">
-        <a class="game" href="https://i-cloned-myself.cubyplay.com" target="_blank" rel="noopener">
-          <img src="img/i-cloned-myself.jpg" alt="I Cloned Myself" loading="lazy">
-          <div>
-            <h3>I Cloned Myself</h3>
-            <p>Dig ore, build a tower floor by floor and clone yourself to do the work. Defeat bosses and fly to the Wild Lands.</p>
-            <em>Play</em>
-          </div>
+<main class="games" id="games">
+  <div class="wrap">
+    <h2>Our games</h2>
+    <div class="grid">
+      <article class="game">
+        <a class="shot" href="https://www.crazygames.com/game/i-cloned-myself" target="_blank" rel="noopener">
+          <img src="img/i-cloned-myself.webp" alt="I Cloned Myself: the player and his clones dig ore by a tower in the sky" loading="lazy" width="1280" height="714">
+          <span>I Cloned Myself</span>
         </a>
-        <a class="game" href="https://egg-heist-tower.cubyplay.com" target="_blank" rel="noopener">
-          <img src="img/egg-heist-tower.jpg" alt="Egg Heist Tower" loading="lazy">
-          <div>
-            <h3>Egg Heist Tower</h3>
-            <p>Climb a tall tower, steal eggs from its guardians and hatch 62 animals that earn money for your farm.</p>
-            <em>Play</em>
+        <div class="body">
+          <p class="pitch"><span class="genre">3D tycoon</span>Dig ore, build a tower floor by floor and clone yourself to do the work. Defeat bosses and fly to the Wild Lands.</p>
+          <ul class="stats">
+            <li><b>90%</b><span>liked it on CrazyGames</span></li>
+            <li><b>4.2<small>/5</small></b><span>rating on Playgama</span></li>
+            <li><b>5</b><span>languages, PC and mobile</span></li>
+          </ul>
+          <div class="play">
+            <a href="https://www.crazygames.com/game/i-cloned-myself" target="_blank" rel="noopener">Play on CrazyGames</a>
+            <a href="https://playgama.com/game/i-cloned-myself" target="_blank" rel="noopener">Play on Playgama</a>
           </div>
+        </div>
+      </article>
+      <article class="game">
+        <a class="shot" href="https://playgama.com/game/egg-heist-tower" target="_blank" rel="noopener">
+          <img src="img/egg-heist-tower.webp" alt="Egg Heist Tower: the player runs off with an egg while a yeti guardian chases him" loading="lazy" width="1280" height="714">
+          <span>Egg Heist Tower</span>
         </a>
-      </div>
+        <div class="body">
+          <p class="pitch"><span class="genre">3D animal tycoon</span>Climb a tall tower, steal eggs from its guardians and hatch animals that earn money for your farm.</p>
+          <ul class="stats">
+            <li><b>4.2<small>/5</small></b><span>rating on Playgama</span></li>
+            <li><b>62</b><span>animals to hatch</span></li>
+            <li><b>5</b><span>languages, PC and mobile</span></li>
+          </ul>
+          <div class="play">
+            <a href="https://playgama.com/game/egg-heist-tower" target="_blank" rel="noopener">Play on Playgama</a>
+            <a href="https://egg-heist-tower.cubyplay.com" target="_blank" rel="noopener">Website</a>
+          </div>
+        </div>
+      </article>
     </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <h2>How we work</h2>
-      <div class="about">
-        <div><h3>Our own engine</h3><p>We build every game on the same 3D engine. What we improve in it, from controls to saving, reaches all our games at once.</p></div>
-        <div><h3>Made for every screen</h3><p>Each game is tested on computers and on phones, so it plays well with a mouse and keyboard and with a touch screen.</p></div>
-        <div><h3>Where to play</h3><p>Our games are published on Playgama and CrazyGames, and each one has its own website.</p></div>
-        <div><h3>Progress is saved</h3><p>Our games save automatically, so players can come back and continue where they stopped.</p></div>
-      </div>
-    </div>
-  </section>
+  </div>
 </main>
 
 <footer>
-  <div class="wrap">© 2026 Troiza</div>
+  <div class="wrap">
+    <a class="brand" href="/"><img src="img/logo.webp" alt="Troiza" width="468" height="160" loading="lazy"></a>
+    <span>© 2026 Troiza. 3D games for the browser.</span>
+  </div>
 </footer>
 </body>
 </html>
